@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <form action="/add" method="post">
+            <legend> Add a Task</legend>
+            <div class="form-group">
+                <input type="text" id="title" class="form-control" name="title">    
+            </div>
+            <div class="form-group">
+                <input type="text-area" id="title" class="form-control" name="description">
+            </div>
+            <button class="btn btn-primary">Add</button>
+        </form>
+        <hr>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var i = 0; i < tasks.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><strong><%= tasks[i].title %></strong></td>
+                        <td> <%= tasks[i].description %> </td>
+                        <td>
+                            <a href="/turn/<%= tasks[i]._id %>" class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>"> Done</a>
+                            <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger"> Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
